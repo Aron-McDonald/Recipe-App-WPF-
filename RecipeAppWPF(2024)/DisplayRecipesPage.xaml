@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="RecipeAppWPF.DisplayRecipesPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeAppWPF"
+        mc:Ignorable="d"
+        d:DesignHeight="600" d:DesignWidth="800"
+        Background="LightBlue">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Recipes" Style="{StaticResource HeadingStyle}" />
+            <StackPanel Margin="0,10">
+                <ComboBox x:Name="filterTypeComboBox" Margin="0,5" SelectedIndex="0" Style="{StaticResource CustomComboBoxStyle}">
+                    <ComboBoxItem Content="Filter by Ingredient"/>
+                    <ComboBoxItem Content="Filter by Food Group"/>
+                    <ComboBoxItem Content="Filter by Maximum Calories"/>
+                </ComboBox>
+                <TextBox x:Name="ingredientFilterTextBox" Margin="0,5" Text="Enter ingredient name" Visibility="Collapsed"/>
+                <ComboBox x:Name="foodGroupFilterComboBox" Margin="0,5" Visibility="Collapsed">
+                    <ComboBoxItem Content="All"/>
+                    <ComboBoxItem Content="Fruit"/>
+                    <ComboBoxItem Content="Vegetable"/>
+                    <ComboBoxItem Content="Grain"/>
+                    <ComboBoxItem Content="Protein"/>
+                    <ComboBoxItem Content="Dairy"/>
+                </ComboBox>
+                <TextBox x:Name="maxCaloriesFilterTextBox" Margin="0,5" Text="Enter maximum calories" Visibility="Collapsed"/>
+                <Button Content="Apply Filter" Click="ApplyFilterButton_Click" Margin="0,5" Style="{StaticResource RoundButtonStyle}"/>
+            </StackPanel>
+            <ListBox x:Name="recipeListBox" Height="300" Margin="0,10,0,0" SelectionChanged="RecipeListBox_SelectionChanged" />
+        </StackPanel>
+        <Border Grid.Column="1" BorderBrush="DarkBlue" BorderThickness="1" Padding="10" Margin="10">
+            <StackPanel>
+                <TextBlock x:Name="recipeNameTextBlock" Style="{StaticResource HeadingStyle}" />
+                <TextBlock Text="Ingredients:" FontWeight="Bold" Margin="0,10,0,5" />
+                <ItemsControl x:Name="ingredientsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding Quantity}" />
+                                        <Run Text="{Binding Unit}" />
+                                        <Run Text="of" />
+                                        <Run Text="{Binding Name}" />
+                                        <Run Text="(" /><Run Text="{Binding Calories}" /><Run Text=" calories, " />
+                                        <Run Text="{Binding FoodGroup}" /><Run Text=" food group)" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Steps:" FontWeight="Bold" Margin="0,10,0,5" />
+                <ItemsControl x:Name="stepsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

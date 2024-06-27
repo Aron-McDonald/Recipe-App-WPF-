@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="RecipeAppWPF.ResetQuantitiesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="Select Recipe" FontWeight="Bold" Style="{StaticResource HeadingStyle}" />
+            <ComboBox x:Name="recipeComboBox" Margin="0,5,0,0" Style="{StaticResource CustomComboBoxStyle}" SelectionChanged="RecipeComboBox_SelectionChanged" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="10">
+            <StackPanel>
+                <TextBlock x:Name="recipeNameTextBlock" FontWeight="Bold" Style="{StaticResource HeadingStyle}" />
+                <TextBlock Text="Ingredients:" FontWeight="Bold" Margin="0,10,0,5" Style="{StaticResource HeadingStyle}" />
+                <ItemsControl x:Name="ingredientsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding Quantity}" />
+                                <Run Text="{Binding Unit}" />
+                                <Run Text="of" />
+                                <Run Text="{Binding Name}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Steps:" FontWeight="Bold" Margin="0,10,0,5" Style="{StaticResource HeadingStyle}" />
+                <ItemsControl x:Name="stepsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button Grid.Row="2" Content="Reset Quantities" Margin="10" Click="ResetQuantitiesButton_Click" Style="{StaticResource RoundButtonStyle}" />
+    </Grid>
+</UserControl>
