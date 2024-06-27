@@ -47,7 +47,7 @@ Key Dependencies:
 3. Obtaining the Source Code:
    - Clone this repository to your local machine using Git:
      ```
-     git clone https://github.com/yourusername/RecipeAppWPF2024.git
+     git clone https://github.com/ST10291606/ST10291606-PROG6211-POE-PART-3.git
      ```
    - Alternatively, download the ZIP file of the repository and extract it to your preferred location
 
